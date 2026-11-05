@@ -1,0 +1,44 @@
+
+spring:
+  application:
+    name: reaproveita-plus
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5434/reaproveita}
+    username: ${DB_USERNAME:reaproveita_user}
+    password: ${DB_PASSWORD:reaproveita_dev}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    show-sql: false
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+server:
+  port: ${PORT:8082}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+  endpoint:
+    health:
+      show-details: never
+
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+
+logging:
+  level:
+    root: INFO
+    br.com.reaproveita: DEBUG

@@ -1,0 +1,28 @@
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: reaproveita-postgres
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: reaproveita
+      POSTGRES_USER: reaproveita_user
+      POSTGRES_PASSWORD: reaproveita_dev
+
+    ports:
+      - "5434:5432"
+
+    volumes:
+      - reaproveita_pgdata:/var/lib/postgresql/data
+
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U reaproveita_user -d reaproveita
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  reaproveita_pgdata:
