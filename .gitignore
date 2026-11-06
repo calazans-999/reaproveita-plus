@@ -35,3 +35,6 @@ build/
 .env
 .env.local
 .env.production
+.env.etapa10
+evidencias/
+*.bak-etapa10

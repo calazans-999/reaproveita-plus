@@ -60,6 +60,34 @@ public class Donation {
         this.sanitaryDeclaration = sanitaryDeclaration;
     }
 
+    public void updateDetails(String title, FoodCategory category, BigDecimal quantityKg,
+                              OffsetDateTime expiresAt, String storageCondition,
+                              boolean sanitaryDeclaration) {
+        this.title = title;
+        this.category = category;
+        this.quantityKg = quantityKg;
+        this.expiresAt = expiresAt;
+        this.storageCondition = storageCondition;
+        this.sanitaryDeclaration = sanitaryDeclaration;
+    }
+
+    public void reserve() {
+        if (status != DonationStatus.AVAILABLE) throw new IllegalStateException("Doacao nao esta disponivel");
+        status = DonationStatus.RESERVED;
+    }
+
+    public void collect() {
+        if (status != DonationStatus.RESERVED) throw new IllegalStateException("Doacao nao esta reservada");
+        status = DonationStatus.COLLECTED;
+    }
+
+    public void releaseReservation() {
+        if (status != DonationStatus.RESERVED) throw new IllegalStateException("Doacao nao esta reservada");
+        status = DonationStatus.AVAILABLE;
+    }
+
+    public void cancel() { this.status = DonationStatus.CANCELLED; }
+
     public Long getId() { return id; }
     public Organization getOrganization() { return organization; }
     public String getTitle() { return title; }

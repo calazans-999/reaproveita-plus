@@ -1,0 +1,72 @@
+name: Reaproveita+ - CI (42 testes, JaCoCo e Docker)
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-test-docker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_DB: reaproveita
+          POSTGRES_USER: reaproveita_user
+          POSTGRES_PASSWORD: ci_test_password_only
+        ports:
+          - 5434:5432
+        options: >-
+          --health-cmd "pg_isready -U reaproveita_user -d reaproveita"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 15
+    env:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5434/reaproveita
+      SPRING_DATASOURCE_USERNAME: reaproveita_user
+      SPRING_DATASOURCE_PASSWORD: ci_test_password_only
+      SPRING_PROFILES_ACTIVE: default
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Java 21 (Temurin)
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Permissao de execucao Maven Wrapper
+        run: chmod +x mvnw
+
+      - name: Testes e cobertura JaCoCo
+        run: ./mvnw -B -ntp clean org.jacoco:jacoco-maven-plugin:0.8.16:prepare-agent test org.jacoco:jacoco-maven-plugin:0.8.16:report
+
+      - name: Empacotamento sem repetir os testes
+        run: ./mvnw -B -ntp -DskipTests package
+
+      - name: Docker build
+        run: docker build --tag reaproveita-plus:ci .
+
+      - name: Arquivar evidencias
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reaproveita-etapa10-ci
+          if-no-files-found: warn
+          path: |
+            target/surefire-reports/TEST-*.xml
+            target/site/jacoco/index.html
+            target/site/jacoco/jacoco.xml
+            target/site/jacoco/jacoco.csv
+            target/*.jar
+          retention-days: 14

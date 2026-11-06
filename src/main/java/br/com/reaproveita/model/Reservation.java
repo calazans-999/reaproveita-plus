@@ -40,6 +40,23 @@ public class Reservation {
         this.receiverOrganization = receiverOrganization;
     }
 
+    public void confirm() {
+        if (status != ReservationStatus.REQUESTED) throw new IllegalStateException("Reserva nao esta solicitada");
+        status = ReservationStatus.CONFIRMED;
+    }
+
+    public void collect() {
+        if (status != ReservationStatus.CONFIRMED) throw new IllegalStateException("Reserva nao esta confirmada");
+        status = ReservationStatus.COLLECTED;
+        collectedAt = OffsetDateTime.now(ZoneOffset.UTC);
+    }
+
+    public void cancel() {
+        if (status != ReservationStatus.REQUESTED && status != ReservationStatus.CONFIRMED)
+            throw new IllegalStateException("Reserva nao pode ser cancelada");
+        status = ReservationStatus.CANCELLED;
+    }
+
     public Long getId() { return id; }
     public Donation getDonation() { return donation; }
     public Organization getReceiverOrganization() { return receiverOrganization; }

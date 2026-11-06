@@ -50,6 +50,11 @@ public class Organization {
     public BigDecimal getLatitude() { return latitude; }
     public BigDecimal getLongitude() { return longitude; }
     public boolean isVerified() { return verified; }
+    public void updateDetails(String name, String city, BigDecimal latitude, BigDecimal longitude) {
+        this.name = name;
+        this.city = city;
+        setCoordinates(latitude, longitude);
+    }
     public void setCoordinates(BigDecimal latitude, BigDecimal longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
