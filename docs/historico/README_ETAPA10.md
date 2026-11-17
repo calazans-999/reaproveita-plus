@@ -1,3 +1,5 @@
+﻿> **DOCUMENTACAO HISTORICA:** este documento registra uma etapa anterior do projeto. Para a arquitetura e implantacao atuais, consulte [DEPLOY_AZURE.md](../DEPLOY_AZURE.md).
+
 # Reaproveita+ — Etapa 10
 
 ## Objetivo
@@ -6,8 +8,8 @@ Adicionar Dockerfile multi-stage, Compose de aplicacao (preservando PostgreSQL e
 
 ## Instalacao
 
-1. Extraia este pacote em `D:\Reaproveita_Etapa10`.
-2. Execute `powershell.exe -NoProfile -ExecutionPolicy Bypass -File D:\Reaproveita_Etapa10\scripts\Instalar_Etapa10.ps1`.
+1. Extraia este pacote em `C:\Projetos\reaproveita-plus`.
+2. Execute `powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Projetos\reaproveita-plus\scripts\Instalar_Etapa10.ps1`.
 3. No repositorio, copie `.env.etapa10.example` para `.env.etapa10` e preencha a senha existente do banco **somente localmente**.
 4. Verifique se `docker compose ps` mostra o PostgreSQL original saudavel.
 5. Execute `docker compose --env-file .env.etapa10 -f compose.app.yaml config`.

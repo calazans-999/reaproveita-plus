@@ -1,3 +1,5 @@
+﻿> **DOCUMENTACAO HISTORICA:** este documento registra uma etapa anterior do projeto. Para a arquitetura e implantacao atuais, consulte [DEPLOY_AZURE.md](../DEPLOY_AZURE.md).
+
 # Reaproveita+ — Etapa 11 | Documentação técnica
 
 **Projeto:** Reaproveita+ — plataforma de redistribuição de alimentos  
