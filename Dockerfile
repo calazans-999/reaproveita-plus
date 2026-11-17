@@ -12,6 +12,9 @@ FROM eclipse-temurin:21-jre-jammy
 WORKDIR /app
 RUN groupadd --gid 10001 reaproveita && useradd --uid 10001 --gid 10001 --no-create-home --shell /usr/sbin/nologin reaproveita
 COPY --from=build --chown=10001:10001 /workspace/target/reaproveita-plus-0.0.1-SNAPSHOT.jar /app/reaproveita-plus.jar
+
+COPY --chown=10001:10001 certs/azure-roots.pem /app/certs/azure-roots.pem
+
 ENV SERVER_PORT=8082 \
     JAVA_TOOL_OPTIONS="-XX:MaxRAMPercentage=75.0"
 EXPOSE 8082

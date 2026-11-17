@@ -38,3 +38,12 @@ build/
 .env.etapa10
 evidencias/
 *.bak-etapa10
+
+# Backups locais
+backup-etapa*/
+*.bak
+*.bak-*
+pom.xml.backup-*
+
+# Segredos e arquivos locais
+.env.etapa10
