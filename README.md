@@ -1,4 +1,4 @@
-# ♻️ Reaproveita+
+﻿# ♻️ Reaproveita+
 
 ### Tecnologia que conecta alimentos a quem precisa.
 
@@ -98,7 +98,7 @@ Também foram validados na Azure os fluxos de cadastro, autenticação, doação
 - [Endpoints da API](docs/API_ENDPOINTS.md)
 - [Preparação inicial para Azure](docs/AZURE_PREPARACAO.md)
 - [Evidências técnicas anteriores](docs/EVIDENCIAS_ETAPA11.md)
-- [Documentação da Etapa 11](README_ETAPA11.md)
+- [Documentação da Etapa 11](docs/historico/README_ETAPA11.md)
 
 ## Segurança e limitações
 
