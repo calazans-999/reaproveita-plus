@@ -96,8 +96,8 @@ Também foram validados na Azure os fluxos de cadastro, autenticação, doação
 
 - [Implantação na Azure](docs/DEPLOY_AZURE.md)
 - [Endpoints da API](docs/API_ENDPOINTS.md)
-- [Preparação inicial para Azure](docs/AZURE_PREPARACAO.md)
-- [Evidências técnicas anteriores](docs/EVIDENCIAS_ETAPA11.md)
+- [Preparação inicial para Azure](docs/historico/AZURE_PREPARACAO.md)
+- [Evidências técnicas anteriores](docs/historico/EVIDENCIAS_ETAPA11.md)
 - [Documentação da Etapa 11](docs/historico/README_ETAPA11.md)
 
 ## Segurança e limitações
