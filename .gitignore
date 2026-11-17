@@ -47,3 +47,5 @@ pom.xml.backup-*
 
 # Segredos e arquivos locais
 .env.etapa10
+
+apresentacao/
